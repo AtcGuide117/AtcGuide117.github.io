@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2025定向越野排行榜</title>
+  <style>
+    body {
+      font-family: "Helvetica Neue", sans-serif;
+      background: #f2f2f2;
+      margin: 0;
+      padding: 10px;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    #searchInput {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    .ranking-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 12px;
+      text-align: center;
+      font-size: 16px;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #007BFF;
+      color: white;
+    }
+    td.rank {
+      font-weight: bold;
+      font-size: 18px;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    @media (max-width: 600px) {
+      th, td {
+        padding: 10px;
+        font-size: 14px;
+      }
+      td.rank {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>2025定向越野排行榜</h1>
+
+  <input type="text" id="searchInput" placeholder="搜索选手姓名..." onkeyup="searchTable()" />
+
+  <table class="ranking-table" id="rankingTable">
+    <thead>
+      <tr>
+        <th>排名</th>
+        <th>选手</th>
+        <th>总积分</th>
+        <th>上周积分</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="rank">1</td><td>莫思楷</td><td>40</td><td>40</td></tr>
+      <tr><td class="rank">1</td><td>文熠</td><td>40</td><td>40</td></tr>
+      <tr><td class="rank">3</td><td>童嘉俊</td><td>26</td><td>26</td></tr>
+      <tr><td class="rank">4</td><td>黄泳颐</td><td>20</td><td>20</td></tr>
+      <tr><td class="rank">4</td><td>唐甜甜</td><td>20</td><td>20</td></tr>
+      <tr><td class="rank">6</td><td>邓熙桐</td><td>13</td><td>13</td></tr>
+      <tr><td class="rank">6</td><td>刘翌琮</td><td>13</td><td>13</td></tr>
+      <tr><td class="rank">8</td><td>唐翊杰</td><td>12</td><td>12</td></tr>
+      <tr><td class="rank">9</td><td>余佳应</td><td>2</td><td>2</td></tr>
+      <tr><td class="rank">9</td><td>刘梓阳</td><td>2</td><td>2</td></tr>
+      <tr><td class="rank">9</td><td>蔡浩诚</td><td>2</td><td>2</td></tr>
+      <tr><td class="rank">9</td><td>丁婧宸</td><td>2</td><td>2</td></tr>
+      <tr><td class="rank">9</td><td>盖彦儒</td><td>2</td><td>2</td></tr>
+      <tr><td class="rank">14</td><td>喻继民</td><td>0</td><td>0</td></tr>
+      <tr><td class="rank">14</td><td>杜长洋</td><td>0</td><td>0</td></tr>
+    </tbody>
+  </table>
+
+  <script>
+    function searchTable() {
+      const input = document.getElementById("searchInput").value.toUpperCase();
+      const table = document.getElementById("rankingTable");
+      const tr = table.getElementsByTagName("tr");
+      for (let i = 1; i < tr.length; i++) {
+        const td = tr[i].getElementsByTagName("td")[1];
+        if (td) {
+          const txtValue = td.textContent || td.innerText;
+          tr[i].style.display = txtValue.toUpperCase().includes(input) ? "" : "none";
+        }
+      }
+    }
+  </script>
+</body>
+</html>
