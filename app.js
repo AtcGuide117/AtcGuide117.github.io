@@ -1,47 +1,39 @@
+// app.js
+
 document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('playerSearch');
-    const groupFilter = document.getElementById('groupFilter');
+    // const groupFilter = document.getElementById('groupFilter'); // 已移除
     const rankingBody = document.getElementById('rankingBody');
     const rows = rankingBody.getElementsByTagName('tr');
 
     // --- 查找功能 ---
     function filterRankings() {
         const searchText = searchInput.value.toLowerCase();
-        const selectedGroup = groupFilter.value;
+        
+        // 组别筛选逻辑已移除
 
         Array.from(rows).forEach(row => {
-            const name = row.cells[1].textContent.toLowerCase();
-            const id = row.cells[2].textContent.toLowerCase();
-            const rowGroup = row.getAttribute('data-group');
-
-            // 1. 文本搜索逻辑
-            const matchesSearch = name.includes(searchText) || id.includes(searchText);
-
-            // 2. 组别筛选逻辑
-            const matchesGroup = (selectedGroup === 'all' || rowGroup === selectedGroup);
+            // 查找逻辑基于“姓名”（索引 1）
+            const name = row.cells[1].textContent.toLowerCase(); 
             
-            // 3. 综合判断
-            if (matchesSearch && matchesGroup) {
+            const matchesSearch = name.includes(searchText);
+
+            if (matchesSearch) {
                 row.style.display = '';
             } else {
                 row.style.display = 'none';
             }
         });
-        
-        // 搜索/筛选后，重新计算排名编号 (简化示例，实际应由后端处理)
-        // renumberRankings();
     }
 
     searchInput.addEventListener('keyup', filterRankings);
-    groupFilter.addEventListener('change', filterRankings);
+    // groupFilter.addEventListener('change', filterRankings); // 已移除
 
-    // --- 排序功能 (简化版，仅作骨架) ---
-    // 这是一个非常基础的行内排序实现，用于演示。
-    // 在实际项目中，建议使用成熟的表格库。
+    // --- 排序功能 (更新索引) ---
     window.sortTable = function(n) {
         let switching, i, x, y, shouldSwitch, dir, switchcount = 0;
         switching = true;
-        dir = "asc"; // 默认升序
+        dir = "asc"; 
         
         while (switching) {
             switching = false;
@@ -51,8 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 x = rows[i].getElementsByTagName("TD")[n];
                 y = rows[i + 1].getElementsByTagName("TD")[n];
                 
-                // 检查是否是数字列 (例如: 排名，积分)
-                const isNumeric = (n === 0 || n === 4);
+                // 检查是否是数字列 (例如: 排名(0), 总积分(3), 上周积分(4))
+                // 用时(2)是文本格式 (5h 45m)，排序处理会比较复杂，此处仅对积分和排名进行数字排序。
+                const isNumeric = (n === 0 || n === 3 || n === 4); 
                 let xContent = isNumeric ? parseFloat(x.innerHTML) : x.innerHTML.toLowerCase();
                 let yContent = isNumeric ? parseFloat(y.innerHTML) : y.innerHTML.toLowerCase();
 
@@ -74,7 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 switching = true;
                 switchcount++;
             } else {
-                // 如果没有发生交换，且方向是 asc，则切换到 desc
                 if (switchcount === 0 && dir === "asc") {
                     dir = "desc";
                     switching = true;

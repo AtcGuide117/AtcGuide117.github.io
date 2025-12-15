@@ -19,9 +19,7 @@
             <a href="#">📅 赛程日历</a>
             <a href="#">ℹ️ 关于我们</a>
         </nav>
-        <div class="sponsor-header">
-            <img src="placeholder-sponsor1.png" alt="主要赞助商 Logo" class="sponsor-logo">
-        </div>
+        <div class="sponsor-header"></div> 
     </header>
 
     <main>
@@ -30,16 +28,7 @@
                 <i class="fas fa-search"></i>
                 <input type="text" id="playerSearch" placeholder="输入姓名或编号查找选手...">
             </div>
-
-            <div class="filter-group">
-                <label for="groupFilter">组别筛选:</label>
-                <select id="groupFilter">
-                    <option value="all">所有组别 (总排名)</option>
-                    <option value="elite-m">男子精英组</option>
-                    <option value="elite-f">女子精英组</option>
-                    <option value="junior">青年组</option>
-                </select>
-            </div>
+            <div class="filter-group"></div>
         </div>
         
         <section class="ranking-table-container">
@@ -49,44 +38,39 @@
                     <tr>
                         <th onclick="sortTable(0)">排名 <i class="fas fa-sort"></i></th>
                         <th onclick="sortTable(1)">姓名 <i class="fas fa-sort"></i></th>
-                        <th>编号</th>
-                        <th onclick="sortTable(3)">组别 <i class="fas fa-sort"></i></th>
-                        <th onclick="sortTable(4)">总积分 <i class="fas fa-sort"></i></th>
-                        <th>参赛场次</th>
+                        <th onclick="sortTable(2)">用时 <i class="fas fa-sort"></i></th>
+                        <th onclick="sortTable(3)">总积分 <i class="fas fa-sort"></i></th>
+                        <th onclick="sortTable(4)">上周积分 <i class="fas fa-sort"></i></th>
                     </tr>
                 </thead>
                 <tbody id="rankingBody">
-                    <tr data-group="elite-m">
+                    <tr>
                         <td>1</td>
                         <td>王建国</td>
-                        <td>A001</td>
-                        <td>男子精英组</td>
+                        <td>5h 45m</td>
                         <td>1250</td>
-                        <td>5</td>
+                        <td>300</td>
                     </tr>
-                    <tr data-group="elite-f">
+                    <tr>
                         <td>2</td>
                         <td>李晓梅</td>
-                        <td>B005</td>
-                        <td>女子精英组</td>
+                        <td>5h 50m</td>
                         <td>1200</td>
-                        <td>5</td>
+                        <td>250</td>
                     </tr>
-                    <tr data-group="junior">
+                    <tr>
                         <td>3</td>
                         <td>张小明</td>
-                        <td>J010</td>
-                        <td>青年组</td>
+                        <td>6h 02m</td>
                         <td>1180</td>
-                        <td>4</td>
+                        <td>100</td>
                     </tr>
-                    <tr data-group="elite-m">
+                    <tr>
                         <td>4</td>
                         <td>赵强</td>
-                        <td>A003</td>
-                        <td>男子精英组</td>
+                        <td>6h 15m</td>
                         <td>1150</td>
-                        <td>5</td>
+                        <td>350</td>
                     </tr>
                     </tbody>
             </table>
@@ -96,15 +80,14 @@
 
     <footer>
         <div class="sponsor-footer">
-            <p>合作伙伴支持:</p>
+            <p>赞助支持:</p>
             <div class="partner-logos">
-                <img src="placeholder-partner2.png" alt="赞助商 2">
-                <img src="placeholder-partner3.png" alt="赞助商 3">
-                <img src="placeholder-partner4.png" alt="赞助商 4">
+                <img src="placeholder-sponsor1.png" alt="主要赞助商">
+                <img src="placeholder-sponsor2.png" alt="合作伙伴">
             </div>
         </div>
         <div class="copyright">
-            © 2026 [乐观地球]. All Rights Reserved. | <a href="#">隐私政策</a>
+            © 2026 [俱乐部名称]. All Rights Reserved. | <a href="#">隐私政策</a>
         </div>
     </footer>
 
