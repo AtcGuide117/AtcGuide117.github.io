@@ -1,110 +1,113 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2025定向越野排行榜</title>
-  <style>
-    body {
-      font-family: "Helvetica Neue", sans-serif;
-      background: #f2f2f2;
-      margin: 0;
-      padding: 10px;
-    }
-    h1 {
-      text-align: center;
-      color: #333;
-    }
-    #searchInput {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-    .ranking-table {
-      width: 100%;
-      border-collapse: collapse;
-      background: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    th, td {
-      padding: 12px;
-      text-align: center;
-      font-size: 16px;
-      border-bottom: 1px solid #ddd;
-    }
-    th {
-      background-color: #007BFF;
-      color: white;
-    }
-    td.rank {
-      font-weight: bold;
-      font-size: 18px;
-    }
-    tr:nth-child(even) {
-      background-color: #f9f9f9;
-    }
-    @media (max-width: 600px) {
-      th, td {
-        padding: 10px;
-        font-size: 14px;
-      }
-      td.rank {
-        font-size: 16px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定向越野积分赛排名 - 俱乐部名称</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-  <h1>2025定向越野排行榜</h1>
 
-  <input type="text" id="searchInput" placeholder="搜索选手姓名..." onkeyup="searchTable()" />
+    <header>
+        <div class="logo-title">
+            <span class="logo">🧭</span>
+            <h1>定向越野积分赛 2026</h1>
+        </div>
+        <nav>
+            <a href="#" class="active">🏆 排名</a>
+            <a href="#">📅 赛程日历</a>
+            <a href="#">ℹ️ 关于我们</a>
+        </nav>
+        <div class="sponsor-header">
+            <img src="placeholder-sponsor1.png" alt="主要赞助商 Logo" class="sponsor-logo">
+        </div>
+    </header>
 
-  <table class="ranking-table" id="rankingTable">
-    <thead>
-      <tr>
-        <th>排名</th>
-        <th>选手</th>
-        <th>总积分</th>
-        <th>第37周积分</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td class="rank">1</td><td>李一墨</td><td>40</td><td>40</td></tr>
-      <tr><td class="rank">2</td><td>唐甜甜</td><td>24</td><td>24</td></tr>
-      <tr><td class="rank">3</td><td>文熠</td><td>20</td><td>20</td></tr>
-      <tr><td class="rank">4</td><td>蔡浩诚</td><td>16</td><td>16</td></tr>
-      <tr><td class="rank">5</td><td>任鹏旭</td><td>12</td><td>12</td></tr>
-      <tr><td class="rank">6</td><td>刘翌琮</td><td>8</td><td>8</td></tr>
-      <tr><td class="rank">7</td><td>童嘉俊</td><td>5</td><td>5</td></tr>
-      <tr><td class="rank">7</td><td>王新予</td><td>5</td><td>5</td></tr>
-      <tr><td class="rank">7</td><td>刘梓阳</td><td>5</td><td>5</td></tr>
-      <tr><td class="rank">7</td><td>莫思楷</td><td>5</td><td>5</td></tr>
-      <tr><td class="rank">7</td><td>杜浩民</td><td>5</td><td>5</td></tr>
-      <tr><td class="rank">7</td><td>黄泳颐</td><td>5</td><td>5</td></tr>
-      <tr><td class="rank">7</td><td>马梓潇</td><td>5</td><td>5</td></tr>
-      <tr><td class="rank">14</td><td>高悦彤</td><td>0</td><td>0</td></tr>
-      <tr><td class="rank">14</td><td>任泓宇</td><td>0</td><td>0</td></tr>
-    </tbody>
-  </table>
+    <main>
+        <div class="controls-section">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="playerSearch" placeholder="输入姓名或编号查找选手...">
+            </div>
 
-  <script>
-    function searchTable() {
-      const input = document.getElementById("searchInput").value.toUpperCase();
-      const table = document.getElementById("rankingTable");
-      const tr = table.getElementsByTagName("tr");
-      for (let i = 1; i < tr.length; i++) {
-        const td = tr[i].getElementsByTagName("td")[1];
-        if (td) {
-          const txtValue = td.textContent || td.innerText;
-          tr[i].style.display = txtValue.toUpperCase().includes(input) ? "" : "none";
-        }
-      }
-    }
-  </script>
+            <div class="filter-group">
+                <label for="groupFilter">组别筛选:</label>
+                <select id="groupFilter">
+                    <option value="all">所有组别 (总排名)</option>
+                    <option value="elite-m">男子精英组</option>
+                    <option value="elite-f">女子精英组</option>
+                    <option value="junior">青年组</option>
+                </select>
+            </div>
+        </div>
+        
+        <section class="ranking-table-container">
+            <h2>总积分排名榜</h2>
+            <table id="rankingTable">
+                <thead>
+                    <tr>
+                        <th onclick="sortTable(0)">排名 <i class="fas fa-sort"></i></th>
+                        <th onclick="sortTable(1)">姓名 <i class="fas fa-sort"></i></th>
+                        <th>编号</th>
+                        <th onclick="sortTable(3)">组别 <i class="fas fa-sort"></i></th>
+                        <th onclick="sortTable(4)">总积分 <i class="fas fa-sort"></i></th>
+                        <th>参赛场次</th>
+                    </tr>
+                </thead>
+                <tbody id="rankingBody">
+                    <tr data-group="elite-m">
+                        <td>1</td>
+                        <td>王建国</td>
+                        <td>A001</td>
+                        <td>男子精英组</td>
+                        <td>1250</td>
+                        <td>5</td>
+                    </tr>
+                    <tr data-group="elite-f">
+                        <td>2</td>
+                        <td>李晓梅</td>
+                        <td>B005</td>
+                        <td>女子精英组</td>
+                        <td>1200</td>
+                        <td>5</td>
+                    </tr>
+                    <tr data-group="junior">
+                        <td>3</td>
+                        <td>张小明</td>
+                        <td>J010</td>
+                        <td>青年组</td>
+                        <td>1180</td>
+                        <td>4</td>
+                    </tr>
+                    <tr data-group="elite-m">
+                        <td>4</td>
+                        <td>赵强</td>
+                        <td>A003</td>
+                        <td>男子精英组</td>
+                        <td>1150</td>
+                        <td>5</td>
+                    </tr>
+                    </tbody>
+            </table>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="sponsor-footer">
+            <p>合作伙伴支持:</p>
+            <div class="partner-logos">
+                <img src="placeholder-partner2.png" alt="赞助商 2">
+                <img src="placeholder-partner3.png" alt="赞助商 3">
+                <img src="placeholder-partner4.png" alt="赞助商 4">
+            </div>
+        </div>
+        <div class="copyright">
+            © 2026 [乐观地球]. All Rights Reserved. | <a href="#">隐私政策</a>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
 </body>
 </html>
